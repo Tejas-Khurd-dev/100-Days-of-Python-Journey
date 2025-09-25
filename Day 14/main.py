@@ -53,8 +53,16 @@ def play_game():
 
 while True:
     play_game()
-    restart_game = input("Do you want to retry? Type 'y' or 'yes' and 'n' for no: ").lower()
 
-    if restart_game not in ["y", "yes"]:
-        print("👋 Thanks for playing! Goodbye!")
-        break
+    while True:
+        restart_game = input("Do you want to retry? Type 'y' for yes or 'n' for no: ").lower()
+
+        if restart_game == 'y':
+            break
+        elif restart_game == 'n':
+            print("By by!")
+            exit()
+        else:
+            print("Invalid input please type 'y' or 'n'")
+            continue
+    
