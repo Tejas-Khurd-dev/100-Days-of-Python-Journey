@@ -13,20 +13,27 @@ should_continue = "yes"
 
 while should_continue == "yes":
     user_name = input("📝 Enter your name: ")
-    user_bid = input("💵 Enter your bid: $")
-
+    try:
+        user_bid = int(input("💵 Enter your bid: $"))
+    except ValueError:
+        print("⚠️ Invalid input! Please enter a number.")
+        continue
+    
     auction_data[user_name] = user_bid
 
-    should_continue = input("Type 'yes' ➡️ or 'no' ❌ if there are any other bidders: ").lower()
-    if should_continue == "yes":
-        print("\n" * 100)
-    elif should_continue == "no":
-        print("\n" * 100)
-        print("🔒 Auction closed. Calculating results... 📊")
-    else:
-        print("\n" * 100)
-        print("⚠️ Invalid choice! We'll consider it as 'no'.")
-        should_continue = "no"
+    while True:
+        should_continue = input("Type 'yes' ➡️ or 'no' ❌ if there are any other bidders: ").lower()
+        if should_continue == "yes":
+            print("\n" * 100)
+            break
+        elif should_continue == "no":
+            print("\n" * 100)
+            print("🔒 Auction closed. Calculating results... 📊")
+            break
+        else:
+            print("\n" * 100)
+            print("⚠️ Invalid choice! We'll consider it as 'no'.")
+            continue
 
 def find_highest_bidder(auction_data):
     highest_bid = 0
